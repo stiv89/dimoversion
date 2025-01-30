@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gotham+Light:wght@400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gotham+Black:wght@400&display=swap">
+</head>
+<body>
+
+    <!-- Widget de Descarga -->
+    <div class="descarga-widget">
+        <div class="app-icon">
+            <img class="dimoapp" src="/assets/dimo.png" alt="Dimo App">
+        </div>
+    
+        <div class="text-container">
+            <div class="dimotitulo">dimo</div>
+            <div class="tu-dinero-movil">Tu dinero móvil ya!</div>
+        </div>
+    
+        <button class="descargar-btn">Descargar</button>
+    </div>
+
+    <!-- Header Principal -->
+    <header class="main-header">
+        <div class="logo">
+            <img src="/assets/logo-dimo.png" alt="Dimo Logo">
+        </div>
+        <nav class="nav-links">
+            <a href="#">Inicio</a>
+            <a href="#">Preguntas</a>
+            <a href="#">Comercio</a>
+            <a href="#" class="plus-dimo">
+                <span class="plus">+</span>dimo
+            </a>
+        </nav>
+        <div class="buttons">
+            <button class="btn login">Ingresar</button>
+            <button class="btn signup">Regístrate</button>
+        </div>
+        <div class="menu-icon">☰</div>
+    </header>
+    <section class="contenido">
+        <h1>Bienvenido a Dimo</h1>
+        <p>Este es un contenido de prueba para verificar que el header se oculta correctamente al hacer scroll.</p>
+        <p style="height: 150vh;"></p> <!-- Espacio extra para hacer scroll -->
+    </section>
+
+
+</body>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    let lastScrollTop = 0;
+    const widget = document.querySelector(".descarga-widget");
+    const header = document.querySelector(".main-header");
+
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            // Scroll hacia abajo
+            widget.classList.add("hidden");
+            header.classList.add("widget-hidden");
+        } else {
+            // Scroll hacia arriba
+            widget.classList.remove("hidden");
+            header.classList.remove("widget-hidden");
+        }
+
+        lastScrollTop = scrollTop;
+    });
+});
+    </script>
+</html>

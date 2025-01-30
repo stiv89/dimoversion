@@ -5,9 +5,7 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Gotham Light', sans-serif;
-}
+
 html, body {
     width: 100%;
     overflow-x: hidden; /* Evita el desplazamiento horizontal */
@@ -70,6 +68,7 @@ html, body {
 
 /* 🔹 Texto */
 .text-container {
+    font-family: 'Gotham Light', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -148,17 +147,20 @@ html, body {
 }
 
 .nav-links a {
+    font-family: 'Gotham Light', sans-serif;
     display: flex;
-    align-items: center; /* Asegura que todos los enlaces estén al mismo nivel */
+    align-items: center;
     font-size: 1rem;
     font-weight: 500;
-    line-height: 1.5; /* Asegurar altura uniforme */
+    line-height: 1.5;
     text-decoration: none;
     color: #000;
     position: relative;
     padding-bottom: 5px;
 }
-
+.nav-links a.plus-dimo {
+    color: inherit;
+}
 .nav-links a:not(:last-child)::after {
     content: "";
     position: absolute;
@@ -178,11 +180,63 @@ html, body {
 .nav-links a:last-child {
     font-weight: bold;
 }
-.plus {
-    color: #4CAF50;
-    font-weight: bold;
-}
 
+/*
+Menu desplegable
+
+*/
+.menu-container {
+    position: absolute;
+    top: calc(100% + 10px); /* Lo baja justo debajo del icono */
+    right: 0px; /* Separado un poco del borde derecho */
+    background: #fff; /* Fondo blanco */
+    width: 230px; /* Ancho fijo */
+    padding: 15px;
+    border-radius: 15px; /* Bordes redondeados */
+    display: none; /* Oculto por defecto */
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Sombra elegante */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+    opacity: 0;
+    transform: translateY(-10px); /* Efecto de deslizamiento */
+}
+.menu-container a {
+    color: #333;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+}
+.menu-container a:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+.menu-container.active {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+.menu-container a:hover {
+    background: #f4f4f4;
+    color: #1C73FD; /* Color azul del branding */
+}
+.menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+.menu-wrapper:hover .menu-container,
+.menu-wrapper:focus-within .menu-container {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+/* 🔹 También hacer que el ícono rote cuando esté activo */
+.menu-wrapper:hover .menu-icon,
+.menu-wrapper:focus-within .menu-icon {
+    transform: rotate(-90deg);
+}
 /* 🔹 Botones */
 .buttons {
     display: flex;
@@ -222,11 +276,15 @@ html, body {
     border: 2px solid blue;
 }
 .menu-icon {
+    margin-left: 20px;
     display: flex;
-    align-items: center; /* Asegura que el ícono del menú esté centrado */
+    align-items: center;
     font-size: 24px;
     cursor: pointer;
-    margin-left: 30px;
+    transition: transform 0.3s ease-in-out;
+}
+.menu-icon.active {
+    transform: rotate(-90deg);
 }
 /* 📱 Responsive: Header */
 @media (max-width: 768px) {
@@ -300,7 +358,22 @@ html, body {
     padding: 5px 12px;
     border-radius: 20px;
     transition: 0.2s;
+    font-family: 'Gotham Black', sans-serif;
+    color: inherit; /* Asegura que no tome el color general del nav-links */
 }
+.nav-links .plus-dimo .plus {
+    font-size: 1rem; /* Igualar tamaño al texto */
+    margin-right: 3px; /* Espaciado entre "+" y "dimo" */
+    color: #2DDD54;
+    font-weight: bold;
+}
+.nav-links .plus-dimo .dimo {
+    font-size: 1rem; /* Igualar tamaño al texto */
+    color: #1C73FD;
+    font-weight: bold;
+}
+
+
 /* 🔹 Hover: Mostrar la línea */
 .nav-links a:not(.plus-dimo):hover::after {
     width: 100%;
@@ -327,13 +400,7 @@ html, body {
 .nav-links a:not(.plus-dimo):hover::after {
     width: 100%;
 }
-/* 🔹 El "+" en verde */
-.nav-links .plus-dimo .plus {
-    font-size: 1rem; /* Igualar tamaño al texto */
-    margin-right: 3px; /* Espaciado entre "+" y "dimo" */
-    color: #4CAF50;
-    font-weight: bold;
-}
+
 
 /* 🔹 Hover sin afectar el tamaño */
 .nav-links .plus-dimo:hover {
@@ -342,31 +409,126 @@ html, body {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* 🔹 Efecto de Moneditas */
-.nav-links .plus-dimo:hover::after {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    opacity: 1;
-    animation: lluvia-monedas 0.7s ease-in-out forwards;
+
+.gestion-tu-dinero-container {
+    margin-left: 80px;
+    padding-top: calc(55px + 250px);
+    max-width: 90%;
+    width: 667px;
+    position: absolute; /* Cambiar a absoluto */
+    top: 20px; /* Ajusta la distancia desde el top */
+    left: 20px; /* Asegura que se alinee a la izquierda */
+    font-size: clamp(24px, 4vw, 46px);
+    font-family: 'Gotham Black', sans-serif;
+    font-weight: bold;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    color: #363535;
+    height: auto;
+}
+.dinero {
+    color: #2DDD54; /* Color verde, puedes cambiarlo por otro */
 }
 
-/* 🔹 Animación de lluvia */
-@keyframes lluvia-monedas {
-    0% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(20px);
+@media (max-width: 768px) {
+    .gestion-tu-dinero-container {
+        position: absolute; /* Se mantiene en una posición absoluta */
+        margin-top: 80px;
+        top: 80px; /* Ajustar según sea necesario */
+        left: -50px; /* Lo acerca más al borde izquierdo */
+        width: 90%; /* Se adapta a la pantalla */
+        padding: 0; /* Evita relleno extra */
+        text-align: left; /* Asegura alineación */
     }
 }
-.contenido {
-    padding-top: calc(55px + 150px); /* Altura del widget + Altura del header */
-    background: #f8f8f8;
+/* Botón */
+.boton-dimo {
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Ajusta el tamaño del botón en móviles */
+    height: auto;
+    text-align: center;
+    font-size: clamp(14px, 4vw, 24px);
+    margin-top: 20px;
+    color: #fff;
+}
+.boton-dimo-container {
+    display: flex;
+    flex-direction: column; /* Asegura que la imagen quede debajo */
+    align-items: flex-start; /* Mantiene alineado a la izquierda */
+    gap: 10px; /* Ajusta la distancia entre el botón y la imagen */
+}
+.boton-fondo {
+    border-radius: 40px;
+    background-color: #1c73fd;
+    width: 100%;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+/* Texto centrado dentro del botón */
+.descarg-dimo-aqu {
+    font-family: 'Gotham Black', sans-serif;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    white-space: nowrap;
+}
+
+
+
+.lineasup-icon {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+
+    /* 🔹 Ajustar posición */
+    position: relative;
+    bottom: 140px;
+    left: 200px;
+    /* 🔹 Rotar la imagen */
+    transform: rotate(-12.2deg);
+}
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+    .boton-dimo {
+        width: 80%; /* Hace que el botón sea más pequeño en móviles */
+        max-width: 210px; /* No más grande de 250px en celulares */
+        font-size: clamp(14px, 4vw, 20px);
+    }
+    .boton-dimo-container {
+        align-items: center; /* Centra en pantallas pequeñas */
+    }
+
+    .boton-fondo {
+        height: 50px; /* Reduce la altura del botón en móviles */
+        border-radius: 25px;
+    }
+
+    .descarg-dimo-aqu {
+        height: 50px;
+    }
+    .boton-dimo,
+    .lineasup-icon {
+        max-width: 250px; /* Reduce el tamaño en móviles */
+    }
+}
+.seccionuno{
+    padding-top: calc(55px + 180px); /* Altura del widget + Altura del header */
+    background: #ffffff;
     text-align: center;
     font-size: 1.5rem;
     min-height: 150vh; /* Hace que haya suficiente espacio para scrollear */

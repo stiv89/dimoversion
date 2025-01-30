@@ -42,18 +42,62 @@
             <button class="btn login">Ingresar</button>
             <button class="btn signup">Regístrate</button>
         </div>
-        <div class="menu-icon">☰</div>
+        <div class="menu-wrapper">
+            <!-- Icono del menú -->
+            <div class="menu-icon">☰</div>
+        
+            <!-- Menú desplegable -->
+            <div class="menu-container">
+                <a href="#">Inicio</a>
+                <a href="#">Preguntas</a>
+                <a href="#">Comercios</a>
+                <a href="#">Contacto</a>
+                <a href="#">+dimo</a>
+                <a href="#">Ingresar</a>
+                <a href="#">Registrarte</a>
+            </div>
+        </div>
+        
     </header>
-    <section class="contenido">
-        <h1>Bienvenido a Dimo</h1>
-        <p>Este es un contenido de prueba para verificar que el header se oculta correctamente al hacer scroll.</p>
-        <p style="height: 150vh;"></p> <!-- Espacio extra para hacer scroll -->
-    </section>
 
+    <section class="seccionuno">
+        <div class="gestion-tu-dinero-container">
+            <p class="gestion-tu-dinero">
+                <span class="gestion-tu">¡Gestioná tu </span>
+                <span class="dinero">dinero</span>
+                <span>!</span>
+            </p>
+            <p class="gestion-tu-dinero">y pagá todo sin salir de casa!</p>
+                <div class="boton-dimo">
+                    <div class="boton-fondo">
+                    </div>
+                    <div class="descarg-dimo-aqu">¡Descargá DIMO aquí!</div>
+                </div>
+                <img class="lineasup-icon" alt="" src="/assets/lineasup.png">
+        </div>
+    </section>
+    
 
 </body>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
+    const menuIcon = document.querySelector(".menu-icon");
+    const menuContainer = document.querySelector(".menu-container");
+
+    menuIcon.addEventListener("click", function () {
+        menuContainer.classList.toggle("active"); // Mostrar u ocultar el menú
+        menuIcon.classList.toggle("active"); // Rotar el icono
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!menuContainer.contains(event.target) && !menuIcon.contains(event.target)) {
+            menuContainer.classList.remove("active");
+            menuIcon.classList.remove("active"); // Volver a la posición original
+        }
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    
     const widget = document.querySelector(".descarga-widget");
     const header = document.querySelector(".main-header");
     let lastScrollY = window.scrollY;

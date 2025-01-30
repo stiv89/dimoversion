@@ -84,7 +84,7 @@ html, body {
     background: #1C73FD;
     color: #ffffff;
     font-family: 'Gotham Black', sans-serif;
-    font-size: 1rem;
+    font-size: 0.8rem;
     border: none;
     border-radius: 20px;
     padding: 6px 12px; /* Ajustado para ocupar menos espacio */
@@ -351,16 +351,40 @@ Menu desplegable
 /* 🔹 Estilo Base de "+dimo" */
 .nav-links .plus-dimo {
     display: flex;
-    align-items: center; /* Centra "+dimo" con los demás */
+    align-items: center;
     font-weight: bold;
-    font-size: 1rem; /* Asegurar mismo tamaño de fuente */
-    line-height: 1.5; /* Igualar altura */
+    font-size: 1rem;
     padding: 5px 12px;
     border-radius: 20px;
-    transition: 0.2s;
     font-family: 'Gotham Black', sans-serif;
-    color: inherit; /* Asegura que no tome el color general del nav-links */
+    color: #2DDD54;
+    background: linear-gradient(45deg, #1C73FD, #2DDD54);
+    animation: glowing 2s infinite alternate ease-in-out, slowGlow 3s infinite alternate ease-in-out, slowPulse 5s infinite ease-in-out;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
 }
+@keyframes glowing {
+    0% { text-shadow: 0 0 3px #1C73FD, 0 0 6px #1C73FD, 0 0 9px #1C73FD; }
+    50% { text-shadow: 0 0 6px #2DDD54, 0 0 12px #2DDD54, 0 0 18px #2DDD54; }
+    100% { text-shadow: 0 0 3px #1C73FD, 0 0 6px #1C73FD, 0 0 9px #1C73FD; }
+}
+
+@keyframes slowPulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); } /* Un poco más suave */
+    100% { transform: scale(1); }
+}
+
+@keyframes slowGlow {
+    0% { box-shadow: 0 0 5px rgba(28, 115, 253, 0.6); }
+    50% { box-shadow: 0 0 12px rgba(45, 221, 84, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(28, 115, 253, 0.6); }
+}
+
+
+
+
+
 .nav-links .plus-dimo .plus {
     font-size: 1rem; /* Igualar tamaño al texto */
     margin-right: 3px; /* Espaciado entre "+" y "dimo" */
@@ -404,9 +428,9 @@ Menu desplegable
 
 /* 🔹 Hover sin afectar el tamaño */
 .nav-links .plus-dimo:hover {
-    background: white;
-    outline: 2px solid rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    animation: glowing 1.5s infinite alternate ease-in-out, slowGlow 2s infinite alternate ease-in-out, slowPulse 4s infinite ease-in-out;
+    background: linear-gradient(45deg, #2DDD54, #1C73FD);
+    color: #fff;
 }
 
 

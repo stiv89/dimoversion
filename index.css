@@ -486,20 +486,12 @@ Menu desplegable
 }
 
 
-
 .lineasup-icon {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    object-fit: contain;
-    display: block;
-
-    /* 🔹 Ajustar posición */
-    position: relative;
-    bottom: 140px;
-    left: 200px;
-    /* 🔹 Rotar la imagen */
-    transform: rotate(-12.2deg);
+    position: absolute;
+    bottom: -10px; /* Ajusta para que toque el botón */
+    left: 50%; /* Centra horizontalmente */
+    transform: translateX(-50%) scale(1.2) rotate(-12.2deg); /* Ajusta el tamaño y rotación */
+    width: 250px; /* Ajusta el tamaño */
 }
 
 /* Ajustes para móviles */
@@ -510,8 +502,12 @@ Menu desplegable
         font-size: clamp(14px, 4vw, 20px);
     }
     .boton-dimo-container {
-        align-items: center; /* Centra en pantallas pequeñas */
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
+
 
     .boton-fondo {
         height: 50px; /* Reduce la altura del botón en móviles */

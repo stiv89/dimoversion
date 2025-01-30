@@ -12,13 +12,14 @@
 
     <!-- Widget de Descarga -->
     <div class="descarga-widget">
-        <div class="app-icon">
-            <img class="dimoapp" src="/assets/dimo.png" alt="Dimo App">
-        </div>
-    
-        <div class="text-container">
-            <div class="dimotitulo">dimo</div>
-            <div class="tu-dinero-movil">Tu dinero móvil ya!</div>
+        <div class="descarga-info">
+            <div class="app-icon">
+                <img class="dimoapp" src="/assets/dimo.png" alt="Dimo App">
+            </div>
+            <div class="text-container">
+                <div class="dimotitulo">dimo</div>
+                <div class="tu-dinero-movil">Tu dinero móvil ya!</div>
+            </div>
         </div>
     
         <button class="descargar-btn">Descargar</button>
@@ -53,25 +54,47 @@
 </body>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-    let lastScrollTop = 0;
     const widget = document.querySelector(".descarga-widget");
     const header = document.querySelector(".main-header");
+    let lastScrollY = window.scrollY;
+    let isWidgetHidden = false;
+    let isShadowAdded = false;
 
     window.addEventListener("scroll", function () {
-        let scrollTop = window.scrollY || document.documentElement.scrollTop;
+        let currentScrollY = window.scrollY;
 
-        if (scrollTop > lastScrollTop) {
-            // Scroll hacia abajo
-            widget.classList.add("hidden");
-            header.classList.add("widget-hidden");
-        } else {
-            // Scroll hacia arriba
-            widget.classList.remove("hidden");
-            header.classList.remove("widget-hidden");
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            // Si el usuario baja, oculta el widget
+            if (!isWidgetHidden) {
+                widget.classList.add("hidden");
+                isWidgetHidden = true;
+            }
+        } else if (currentScrollY < lastScrollY && currentScrollY < 100) {
+            // Si el usuario sube, muestra el widget
+            if (isWidgetHidden) {
+                widget.classList.remove("hidden");
+                isWidgetHidden = false;
+            }
         }
 
-        lastScrollTop = scrollTop;
+        // Agregar sombra al header solo cuando bajas
+        if (currentScrollY > 50) {
+            if (!isShadowAdded) {
+                header.classList.add("shadow");
+                isShadowAdded = true;
+            }
+        } else {
+            if (isShadowAdded) {
+                header.classList.remove("shadow");
+                isShadowAdded = false;
+            }
+        }
+
+        lastScrollY = currentScrollY;
     });
 });
-    </script>
+
+
+</script>
+
 </html>

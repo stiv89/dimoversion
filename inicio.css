@@ -1,0 +1,875 @@
+/* 🔹 Estilos Globales */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden; /* Evita el desplazamiento horizontal */
+}
+
+/*
+1- Widget de Descarga (Inicio)
+*/
+
+.descarga-widget {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100vw; /* Asegura que no se expanda más del ancho del viewport */
+  background-color: #565656;
+  color: #fff;
+  padding: 10px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 55px;
+  transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+  z-index: 1001;
+}
+
+.descarga-widget.hidden {
+  transform: perspective(600px) rotateX(90deg); /* Gira hacia atrás */
+  opacity: 0;
+  transform-origin: top; /* Hace que el giro empiece desde arriba */
+  transition: transform 0.5s ease-out, opacity 0.3s ease-out;
+}
+.descarga-info {
+  display: flex;
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+  gap: 10px;
+}
+/* 🔹 Estilo del título */
+.dimotitulo {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Gotham Black", sans-serif;
+}
+
+/* 🔹 Contenedor del logo */
+.app-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; /* Ajuste de tamaño */
+  height: 40px;
+  background: #fff;
+  border-radius: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.19);
+}
+
+/* 🔹 Imagen de la App */
+.dimoapp {
+  width: 30px;
+  height: auto;
+}
+
+.dimoapp {
+  width: 30px;
+  height: auto;
+}
+
+/* 🔹 Texto */
+.text-container {
+  font-family: "Gotham Light", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.tu-dinero-movil {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+/* 🔹 Botón de Descarga */
+.descargar-btn {
+  background: #1c73fd;
+  color: #ffffff;
+  font-family: "Gotham Black", sans-serif;
+  font-size: 0.8rem;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 12px; /* Ajustado para ocupar menos espacio */
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.descargar-btn:hover {
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+}
+/* FIN WIDGET*/
+
+/*
+2- Header (Inicio)
+*/
+
+.main-header {
+  position: fixed;
+  top: 55px; /* Ajustado a la altura del widget */
+  left: 0;
+  width: 100%;
+  max-width: 100vw;
+  background: #fff;
+  padding: 10px 5%;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: top 0.4s ease-out, box-shadow 0.3s ease-out;
+  z-index: 1000;
+}
+
+.main-header.shadow {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.descarga-widget.hidden + .main-header {
+  top: 0;
+}
+
+/* 🔹 Cuando el widget desaparece, el header sube */
+.widget-hidden {
+  transform: translateY(-65px); /* Mueve el header hacia arriba */
+}
+.logo {
+  display: flex;
+  align-items: center; /* Centra la imagen dentro del div */
+}
+/* 🔹 Logo */
+.logo img {
+  height: 40px;
+}
+
+/* 🔹 Navegación */
+.nav-links {
+  display: flex;
+  align-items: center; /* Centra los links verticalmente */
+  gap: 20px;
+  flex: 1;
+  justify-content: center;
+}
+
+.nav-links a {
+  font-family: "Gotham Light", sans-serif;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
+  color: #000;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+/* DIMO GLOW*/
+.nav-links .plus-dimo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-family: "Gotham Black", sans-serif;
+  color: #2ddd54;
+  background: linear-gradient(45deg, #1c73fd, #2ddd54);
+  animation: glowing 2s infinite alternate ease-in-out,
+    slowGlow 3s infinite alternate ease-in-out,
+    slowPulse 5s infinite ease-in-out;
+  transition: 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.nav-links a.plus-dimo {
+  color: inherit;
+}
+.nav-links .plus-dimo .plus {
+  font-size: 1rem; /* Igualar tamaño al texto */
+  margin-right: 3px; /* Espaciado entre "+" y "dimo" */
+  color: #2ddd54;
+  font-weight: bold;
+}
+.nav-links .plus-dimo .dimo {
+  font-size: 1rem; /* Igualar tamaño al texto */
+  color: #1c73fd;
+  font-weight: bold;
+}
+.nav-links .plus-dimo:hover {
+  animation: glowing 1.5s infinite alternate ease-in-out,
+    slowGlow 2s infinite alternate ease-in-out,
+    slowPulse 4s infinite ease-in-out;
+  background: linear-gradient(45deg, #2ddd54, #1c73fd);
+  color: #fff;
+}
+@keyframes glowing {
+  0% {
+    text-shadow: 0 0 3px #1c73fd, 0 0 6px #1c73fd, 0 0 9px #1c73fd;
+  }
+  50% {
+    text-shadow: 0 0 6px #2ddd54, 0 0 12px #2ddd54, 0 0 18px #2ddd54;
+  }
+  100% {
+    text-shadow: 0 0 3px #1c73fd, 0 0 6px #1c73fd, 0 0 9px #1c73fd;
+  }
+}
+
+@keyframes slowPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  } /* Un poco más suave */
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slowGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(28, 115, 253, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(45, 221, 84, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(28, 115, 253, 0.6);
+  }
+}
+/* DIMO GLOW*/
+.boton-dimo {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* Ajusta el tamaño del botón en móviles */
+  height: auto;
+  text-align: center;
+  font-size: clamp(14px, 4vw, 24px);
+  margin-top: 20px;
+  color: #fff;
+}
+.boton-dimo-container {
+  display: flex;
+  flex-direction: column; /* Asegura que la imagen quede debajo */
+  align-items: flex-start; /* Mantiene alineado a la izquierda */
+  gap: 10px; /* Ajusta la distancia entre el botón y la imagen */
+}
+.boton-fondo {
+  border-radius: 40px;
+  background-color: #1c73fd;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.nav-links a:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #1c73fd;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease-in-out;
+}
+.nav-links a:not(:last-child):hover::after {
+  transform: scaleX(1);
+}
+/* 🔹 +dimo sigue sin hover */
+.nav-links a:last-child {
+  font-weight: bold;
+}
+.menu-container {
+  position: absolute;
+  top: calc(100% + 10px); /* Lo baja justo debajo del icono */
+  right: 0px; /* Separado un poco del borde derecho */
+  background: #fff; /* Fondo blanco */
+  width: 230px; /* Ancho fijo */
+  padding: 15px;
+  border-radius: 15px; /* Bordes redondeados */
+  display: none; /* Oculto por defecto */
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15); /* Sombra elegante */
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  opacity: 0;
+  transform: translateY(-10px); /* Efecto de deslizamiento */
+}
+.menu-container a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 12px 15px;
+  border-radius: 10px;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-weight: 500;
+}
+
+.menu-container.active {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+.menu-container a:hover {
+  background: #ffffff;
+  color: #1c73fd; /* Color azul del branding */
+}
+
+.menu-container a:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+.menu-wrapper {
+  position: relative;
+  display: inline-block;
+}
+.menu-wrapper:hover .menu-container,
+.menu-wrapper:focus-within .menu-container {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+}
+/* 🔹 También hacer que el ícono rote cuando esté activo */
+.menu-wrapper:hover .menu-icon,
+.menu-wrapper:focus-within .menu-icon {
+  transform: rotate(-90deg);
+}
+/* 🔹 Botones */
+.buttons {
+  display: flex;
+  align-items: center; /* Asegura que los botones estén centrados */
+  gap: 10px;
+}
+
+.btn {
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  display: flex;
+  align-items: center; /* Centra el texto dentro de los botones */
+  justify-content: center;
+}
+
+.login {
+  background: none;
+  border: 2px solid #333;
+  color: #333;
+}
+/* 🔹 Hover en Ingresar */
+.login:hover {
+  background: #333;
+  color: white;
+}
+.signup {
+  background: blue;
+  color: #fff;
+  border: 2px solid blue;
+}
+.signup:hover {
+  background: white;
+  color: blue;
+  border: 2px solid blue;
+}
+.menu-icon {
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+}
+.menu-icon.active {
+  transform: rotate(-90deg);
+}
+
+/* Query para el Header */
+@media (max-width: 768px) {
+  .main-header {
+    top: 45px; /* Ajuste de altura del header */
+    height: 55px;
+    padding: 8px 5%;
+  }
+  /* 🔹 Menú hamburguesa visible, ocultar navegación */
+  .nav-links,
+  .buttons {
+    display: none;
+  }
+  .menu-icon {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .descarga-widget {
+    min-height: 45px; /* Más compacto */
+    padding: 8px 5%;
+    display: flex;
+    flex-wrap: wrap; /* Ajusta los elementos dentro del widget */
+  }
+  .descarga-info {
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+  .dimotitulo {
+    font-size: 0.8rem;
+  }
+
+  .tu-dinero-movil {
+    font-size: 0.7rem;
+  }
+
+  .app-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .dimoapp {
+    width: 20px;
+  }
+
+  .descargar-btn {
+    padding: 4px 8px;
+    font-size: 0.7rem;
+    border-radius: 15px;
+  }
+  .nav-links,
+  .buttons {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+/* FIN HEADER*/
+
+/* Seccion 1*/
+.seccionuno {
+  padding-top: calc(55px + 180px); /* Altura del widget + Altura del header */
+  background: #ffffff;
+  text-align: center;
+  font-size: 1.5rem;
+  min-height: 67vh; /* Hace que haya suficiente espacio para scrollear */
+}
+.gestion-tu-dinero-container {
+  margin-left: 80px;
+  padding-top: calc(55px + 250px);
+  max-width: 90%;
+  width: 667px;
+  position: absolute; /* Cambiar a absoluto */
+  top: 20px; /* Ajusta la distancia desde el top */
+  left: 20px; /* Asegura que se alinee a la izquierda */
+  font-size: clamp(24px, 4vw, 46px);
+  font-family: "Gotham Black", sans-serif;
+  font-weight: bold;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  color: #363535;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .gestion-tu-dinero-container {
+    position: absolute; /* Se mantiene en una posición absoluta */
+    margin-top: 80px;
+    top: 80px; /* Ajustar según sea necesario */
+    left: -50px; /* Lo acerca más al borde izquierdo */
+    width: 90%; /* Se adapta a la pantalla */
+    padding: 0; /* Evita relleno extra */
+    text-align: left; /* Asegura alineación */
+  }
+}
+.dinero {
+  color: #2ddd54; /* Color verde, puedes cambiarlo por otro */
+}
+.boton-dimo {
+  position: relative;
+  width: 100%;
+  max-width: 300px; /* Ajusta el tamaño del botón en móviles */
+  height: auto;
+  text-align: center;
+  font-size: clamp(14px, 4vw, 24px);
+  margin-top: 20px;
+  color: #fff;
+}
+.boton-fondo {
+  border-radius: 40px;
+  background-color: #1c73fd;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.descarg-dimo-aqu {
+  font-family: "Gotham Black", sans-serif;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 100%;
+  white-space: nowrap;
+}
+.lineasup-icon {
+  position: absolute;
+  bottom: -10px; /* Ajusta para que toque el botón */
+  left: 50%; /* Centra horizontalmente */
+  transform: translateX(-50%) scale(1.2) rotate(-12.2deg); /* Ajusta el tamaño y rotación */
+  width: 250px; /* Ajusta el tamaño */
+}
+
+@media (max-width: 768px) {
+  .boton-dimo {
+    width: 80%; /* Hace que el botón sea más pequeño en móviles */
+    max-width: 210px; /* No más grande de 250px en celulares */
+    font-size: clamp(14px, 4vw, 20px);
+  }
+  .boton-dimo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .boton-fondo {
+    height: 50px; /* Reduce la altura del botón en móviles */
+    border-radius: 25px;
+  }
+
+  .descarg-dimo-aqu {
+    height: 50px;
+  }
+  .boton-dimo,
+  .lineasup-icon {
+    max-width: 250px; /* Reduce el tamaño en móviles */
+  }
+}
+
+@media (max-width: 768px) {
+  .seccionuno {
+    min-height: 45vh; /* Reduce la altura en móviles */
+    padding-top: calc(55px + 100px); /* Ajusta el padding */
+  }
+}
+
+/* 3- Seccion dos */
+.secciondos {
+  font-family: "Gotham Black", sans-serif;
+}
+.flex-container {
+  display: flex;
+  align-items: center; /* Centra verticalmente */
+  justify-content: center;
+  gap: 40px; /* Espacio entre carrusel y texto */
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 5%;
+}
+.carousel-container {
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  width: 250px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 20px;
+  background: #fff;
+  padding: 20px;
+  margin-left: 40px;
+  margin-bottom: 30px;
+}
+.carousel {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 250px;
+  text-align: center;
+}
+
+.carousel-item img {
+  width: 50%;
+  border-radius: 10px;
+}
+
+.carousel-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.carousel-item p {
+  font-size: 14px;
+  color: #555;
+}
+.dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  background-color: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #1c73fd;
+}
+.texto-carrusel {
+  flex: 1; /* Toma la mitad del espacio */
+  max-width: 500px;
+}
+
+/* 🔹 Estilos del título */
+.texto-carrusel h2 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #000;
+}
+@media (max-width: 768px) {
+  .carousel-container {
+    width: 90%; /* Se adapta al ancho del móvil */
+    max-width: 300px; /* Máximo tamaño en móviles */
+    padding: 15px;
+  }
+
+  .carousel-item {
+    min-width: 100%; /* Ocupar todo el ancho disponible */
+  }
+
+  .controls {
+    top: 50%;
+    width: 100%;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    margin: 4px;
+  }
+}
+
+/* 3- Seccion tres */
+.secciontres {
+  min-height: 90vh;
+}
+.textoesquina {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  font-size: 2.5vw; /* Ajusta el tamaño del texto según la pantalla */
+  text-align: left;
+  color: #fff;
+  font-family: "Gotham Black", sans-serif;
+  display: flex;
+  align-items: center;
+}
+.subfondo1 {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 90%;
+  max-width: 1166px;
+  height: 150px;
+  border-radius: 87px;
+  background-color: #999595;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  /*margin-left: 250px;*/
+}
+.fondo1 {
+  position: absolute;
+  top: 0;
+  left: 45%;
+  width: 87%;
+  max-width: 1138px;
+  height: 133px;
+  border-radius: 87px;
+  background-color: #565454;
+  /* margin-left: 250px;*/
+}
+.conecta-tu-dimo {
+  margin-top: 49px;
+  top: 50%;
+  left: 55%;
+  transform: translateY(-50%);
+  width: 80%;
+  text-shadow: 0px 3px 64px rgba(0, 0, 0, 0.25);
+  font-family: "Gotham Black", sans-serif;
+  font-weight: bold;
+  font-size: 35px;
+}
+.coop-fotos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh;
+}
+.subtit {
+  width: 363px;
+  position: relative;
+  font-size: 49.11px;
+  font-family: "Gochi Hand";
+  color: #000;
+  text-align: left;
+  display: inline-block;
+  height: 80px;
+  text-shadow: 0px 3.585261344909668px 72.96px rgba(0, 0, 0, 0.25);
+}
+.boton-registro {
+  width: 100%;
+  position: relative;
+  height: 68px;
+  text-align: left;
+  font-size: 33.84px;
+  color: #fff;
+  font-family: "Gotham Black";
+}
+.fondo {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  border-radius: 41.26px;
+  background-color: #81bc45;
+  width: 412.6px;
+  height: 68px;
+}
+
+/*4- Seccion cuatro*/
+.ultimo {
+  width: 100%;
+  position: relative;
+  height: 508px;
+  text-align: left;
+  font-size: 46.77px;
+  color: #000;
+  font-family: "Gotham Black";
+}
+.fondotelefono {
+  position: absolute;
+  top: 0px;
+  left: 833px;
+  border-radius: 134px;
+  background-color: rgba(28, 115, 253, 0.28);
+  border: 6px solid rgba(28, 115, 254, 0.18);
+  box-sizing: border-box;
+  width: 482px;
+  height: 508px;
+}
+.disponible-en-google {
+  position: absolute;
+  top: 19px;
+  left: 0px;
+  display: inline-block;
+  width: 749px;
+  height: 121px;
+}
+.appstore-icon {
+  position: absolute;
+  top: 187px;
+  left: 0px;
+  width: 273px;
+  height: 90.9px;
+  object-fit: cover;
+}
+.google-icon {
+  position: absolute;
+  top: 186px;
+  left: 294px;
+  width: 307px;
+  height: 91px;
+  object-fit: cover;
+}
+.telefono-icon {
+  position: absolute;
+  top: 19px;
+  left: 894px;
+  width: 410px;
+  height: 474.6px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .subfondo1 {
+    width: 95%;
+    height: 100px;
+    left: 30%;
+  }
+  .fondo1 {
+    width: 85%;
+    height: 70px;
+    left: 30%;
+  }
+  .conecta-tu-dimo {
+    font-size: 4vw; /* Tamaño dinámico del texto */
+  }
+}
+/*Footer */
+
+footer {
+  background-color: #333;
+  display: flex;
+  align-items: center; /* Alinea verticalmente */
+  justify-content: start; /* Alinea la imagen a la izquierda */
+  padding: 20px;
+}
+
+.footlog {
+  width: 150px; /* Ajusta el tamaño si es necesario */
+  margin-right: 20px; /* Empuja todo lo demás a la derecha */
+}
+
+.footer-links {
+  margin-left: 80px;
+  display: flex;
+  gap: 50px; /* Espaciado entre los botones */
+}
+
+.footer-links a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 16px;
+}
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+.footer-info {
+  margin-left: auto; /* Empuja este elemento hacia la derecha */
+  display: flex;
+  flex-direction: column;
+  text-align: right; /* Asegura que el texto esté alineado a la derecha */
+}
+
+.footer-info strong {
+  color: #ffffff;
+
+  font-size: 16px;
+}
+
+.footer-info p {
+  color: #ffffff;
+  margin: 5px 0;
+  font-size: 14px;
+  opacity: 0.8; /* Texto más sutil */
+}
